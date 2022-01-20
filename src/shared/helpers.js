@@ -1,5 +1,7 @@
-import html2canvas from 'html2canvas'
-import Swal from 'sweetalert2'
+import Axios from 'axios';
+import html2canvas from 'html2canvas';
+import Swal from 'sweetalert2';
+import { ENDPOINT } from './constants';
 
 export const htmlToImage = async (element) => {
     const input = element;
@@ -33,3 +35,5 @@ export const swalConfirm = ({ text = 'Anda Yakin?', title = 'Konfirmasi' }, succ
         customClass: { container: 'sweetalert-z-index' }
     }).then(res => res.isConfirmed ? successCB() : deniedCB());
 };
+
+export const customAxios = Axios.create({ url: ENDPOINT });
