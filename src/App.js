@@ -1,6 +1,7 @@
+import Template from "./components/layout/Template";
 
 function App() {
-    return <h1>React App</h1>;
+  return <Template />;
 }
 
 export default App;
