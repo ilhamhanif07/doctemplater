@@ -8,7 +8,9 @@ function Home() {
         <Grid item lg={12}>
           <Paper
             sx={{ p: 2, display: "flex", flexDirection: "column" }}
-          ></Paper>
+          >
+            <h1>Hai</h1>
+          </Paper>
         </Grid>
       </Grid>
     </React.Fragment>

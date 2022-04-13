@@ -1,7 +1,7 @@
-import Template from "./components/layout/Template";
+import Router from './router/Router';
 
 function App() {
-  return <Template />;
+  return <Router />;
 }
 
 export default App;

@@ -3,15 +3,22 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
+// import ListHeader from '@mui/material/ListH'
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { Icon } from "@mui/material";
+import { Divider } from '@mui/material'
 
 export const mainListItems = (
   <React.Fragment>
+    <ListSubheader component="div" inset>
+      Home
+    </ListSubheader>
     <ListItemButton>
+      {/* ini icon dashboard*/}
       <ListItemIcon>
         <Icon className="material-icons-outlined">dashboard</Icon>
       </ListItemIcon>
+      {/* ini tulisan dashboard */}
       <Link to="/">
         <ListItemText primary="Dashboard" />
       </Link>
