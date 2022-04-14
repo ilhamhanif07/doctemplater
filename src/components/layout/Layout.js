@@ -7,10 +7,11 @@ import Drawer from "../Navigation/Drawer";
 // import Home from "../pages/Home/Home";
 
 import { Outlet, Link } from 'react-router-dom';
+import VerticalMenu from '../Navigation/VerticalMenu';
 
 export default function Layout() {
     const [open, setOpen] = useState(false);
-    const drawerWidth = 240;
+    const drawerWidth = 300;
 
     const toggleDrawer = () => {
         setOpen(true);
@@ -25,30 +26,8 @@ export default function Layout() {
             <AppBar drawerWidth={drawerWidth} open={open}/>
             
             <Drawer drawerWidth={drawerWidth} open={open} toggleDrawer={toggleDrawer} closeToggleDrawer={closeToggleDrawer}>
-                <List>
-                    <Link to="/" >
-                        <ListItemButton>
-                            {/* ini icon dashboard*/}
-                            <ListItemIcon>
-                                <Icon className="material-icons-outlined">dashboard</Icon>
-                            </ListItemIcon>
-                            {/* ini tulisan dashboard */}
-                            <ListItemText primary="Dashboard" />
-                        </ListItemButton>
-                    </Link>
-                    
-                    <Link to="/masterData">
-                        <ListItemButton>
-                            {/* ini icon dashboard*/}
-                            <ListItemIcon>
-                                <Icon className="material-icons-outlined">file</Icon>
-                            </ListItemIcon>
-                            {/* ini tulisan dashboard */}
-                            <ListItemText primary="Master Data" />
-                        </ListItemButton>
-                    </Link>
-                    
-                </List>
+                
+                <VerticalMenu />
             </Drawer>
             
             <SectionBox>
