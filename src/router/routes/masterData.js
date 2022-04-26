@@ -9,7 +9,7 @@ const masterData = [
         element: <BlankLayout />,
         children: [
             {
-                path: '/masterData/subTypeDocument/',
+                path: '/masterData/subTypeDocument',
                 element: <SubTypeDocument />
             },
             {
