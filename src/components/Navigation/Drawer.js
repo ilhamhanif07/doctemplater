@@ -36,31 +36,34 @@ export default function Drawer({drawerWidth, open, toggleDrawer, closeToggleDraw
     }))
 
     return(
-        <DrawerConst
-            variant="permanent"
-            open={open}
-            onMouseEnter={toggleDrawer}
-            onMouseLeave={closeToggleDrawer}>
-            
-            <Toolbar
-                sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'flex-end',
-                    px: [1],
-                    marginBottom: '5px'
-                }}>
-
-                <Avatar 
-                    src={logoMostrans}
-                    sx={{ width: 50, height: 50, marginRight: '15px'}}/>
+        <>
+            <DrawerConst
+                variant="permanent"
+                open={open}
+                onMouseEnter={toggleDrawer}
+                onMouseLeave={closeToggleDrawer}>
                 
-                <Typography variant="h6" color="#07784A" sx={{ flexGrow: 1 }}>
-                    Mostrans Legal System
-                </Typography>
-            </Toolbar>
+                <Toolbar
+                    sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'flex-end',
+                        px: [1],
+                        marginBottom: '5px'
+                    }}>
 
-            {children}
-        </DrawerConst>
+                    <Avatar 
+                        src={logoMostrans}
+                        sx={{ width: 50, height: 50, marginRight: '15px'}}/>
+                    
+                    <Typography variant="h6" color="#07784A" sx={{ flexGrow: 1 }}>
+                        Mostrans Legal System
+                    </Typography>
+                </Toolbar>
+
+                {children}
+            </DrawerConst>
+        </>
+        
     )
 }

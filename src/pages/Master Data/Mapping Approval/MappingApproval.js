@@ -1,7 +1,7 @@
 import { Grid, Paper } from "@mui/material";
 import React from "react";
 
-function Home() {
+function MappingApproval() {
   return (
     <React.Fragment>
       <Grid container spacing={3}>
@@ -9,7 +9,7 @@ function Home() {
           <Paper
             sx={{ p: 2, display: "flex", flexDirection: "column" }}
           >
-            <h1>Hai</h1>
+            <h1>ini MappingApproval</h1>
           </Paper>
         </Grid>
       </Grid>
@@ -17,4 +17,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default MappingApproval;

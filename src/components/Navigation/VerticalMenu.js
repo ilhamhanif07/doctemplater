@@ -1,9 +1,11 @@
-import { List, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
+import { List, ListItemButton, ListItemIcon, ListItemText, ListSubheader } from "@mui/material";
 import { useState } from "react";
 import { Link } from 'react-router-dom'
 import menu from '../../menu';
 
-export default function VerticalMenu() {
+export default function VerticalMenu(props) {
+    const [title, setTitle] = useState('');
+
     return (
         <List>
             {
@@ -20,24 +22,21 @@ export default function VerticalMenu() {
                     }else{
                         return(
                             <>
-                                <ListItemButton disabled={true}>
-                                    <ListItemIcon>{item.icon}</ListItemIcon>
-                                    <ListItemText primary={item.title} />
-                                </ListItemButton>
-                                <List>
-                                    {
-                                        item.children.map((item2) => {
-                                            return (
-                                                <Link to={item2.link}>
-                                                    <ListItemButton sx={{pl: 4}}>
-                                                        <ListItemIcon>{item2.icon}</ListItemIcon>
-                                                        <ListItemText primary={item2.title}/>
-                                                    </ListItemButton>
-                                                </Link>
-                                            )
-                                        })
-                                    }
-                                </List>
+                                {
+                                    props.open && <ListSubheader>{item.title}</ListSubheader>
+                                }
+                                {
+                                    item.children.map((item2) => {
+                                        return (
+                                            <Link to={item2.link}>
+                                                <ListItemButton>
+                                                    <ListItemIcon>{item2.icon}</ListItemIcon>
+                                                    <ListItemText primary={item2.subTitle}/>
+                                                </ListItemButton>
+                                            </Link>
+                                        )
+                                    })
+                                }
                             </>
                         )
                     }

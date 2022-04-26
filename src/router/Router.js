@@ -1,15 +1,31 @@
-import { Routes, Route, Outlet, Link as RouterLink } from "react-router-dom";
+import React from 'react';
+import { Routes, Route, useRoutes, useLocation } from "react-router-dom";
 import Layout from "../components/layout/Layout";
-import Home from '../pages/Home/Home';
-import MasterData from '../pages/Master Data/MasterData';
+import NotFound from '../pages/NotFound';
+import { adminRoutes } from '../router/routes/index';
 
 export default function Router() {
+    const adminR = [...adminRoutes];
+
+    let selectedRoutes = useRoutes([
+        {
+            path: '/',
+            element: <Layout />,
+            children: adminR
+        },
+        {
+            path: '/login',
+            element: <NotFound />
+        },
+        {
+            path: '/*',
+            element: <NotFound />
+        }
+    ])
+
     return (
-        <Routes>
-            <Route path="/" element={<Layout />}>
-                <Route index element={<Home/>}/>
-                <Route path="masterData" element={<MasterData/>}/>
-            </Route>
-        </Routes>
+        <React.Fragment>
+            {selectedRoutes}
+        </React.Fragment>
     )
 }

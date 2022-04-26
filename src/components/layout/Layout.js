@@ -1,12 +1,10 @@
-import { ListItemButton, ListItemIcon, ListItemText, Icon, Box, Toolbar, List, Divider } from '@mui/material';
 import { useState } from "react";
 import MainBox from "../layout/MainBox";
 import SectionBox from "../layout/SectionBox";
 import AppBar from "../Navigation/AppBar";
 import Drawer from "../Navigation/Drawer";
-// import Home from "../pages/Home/Home";
 
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import VerticalMenu from '../Navigation/VerticalMenu';
 
 export default function Layout() {
@@ -23,11 +21,10 @@ export default function Layout() {
 
     return (
         <MainBox>
-            <AppBar drawerWidth={drawerWidth} open={open}/>
+            <AppBar drawerWidth={drawerWidth} open={open} />
             
             <Drawer drawerWidth={drawerWidth} open={open} toggleDrawer={toggleDrawer} closeToggleDrawer={closeToggleDrawer}>
-                
-                <VerticalMenu />
+                <VerticalMenu open={open}/>
             </Drawer>
             
             <SectionBox>

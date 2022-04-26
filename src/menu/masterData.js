@@ -1,31 +1,31 @@
 import { Icon } from '@mui/material';
 
-export default [
+const masterData = [
     {
-        title: 'MasterData',
+        title: 'Master Data',
         icon: <Icon className="material-icon-outlined">inventory</Icon>,
         link: '',
         children: [
             {
-                title: 'Sub Type Document',
+                title: 'MasterData',
+                subTitle: 'Sub Type Document',
                 icon: <Icon className="material-icon-outlined">article</Icon>,
                 link: '/masterData/subTypeDocument',
             },
             {
-                title: 'Attachments',
+                title: 'MasterData',
+                subTitle: 'Attachments',
                 icon: <Icon className="material-icon-outlined">attachment</Icon>,
                 link: '/masterData/attachments',
             },
             {
-                title: 'Reason Reject',
-                icon: <Icon className="material-icon-outlined">dangerous</Icon>,
-                link: '/masterData/reasonReject',
-            },
-            {
-                title: 'Approval Mapping',
-                icon: <Icon className="material-icon-outlined">dashboard</Icon>,
-                link: '/masterData/approvalMapping'
+                title: 'MasterData',
+                subTitle: 'Mapping Approval',
+                icon: <Icon className="material-icon-outlined">map</Icon>,
+                link: '/masterData/MappingApproval'
             }
         ]
     }
 ]
+
+export default masterData;

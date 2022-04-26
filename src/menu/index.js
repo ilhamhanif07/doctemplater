@@ -1,9 +1,11 @@
 import dashboard from './dashboard'
 import masterData from './masterData';
+import request from './request'
 
 const adminNavigation = [
     ...dashboard,
-    ...masterData
+    ...masterData,
+    ...request
 ]
 
 export default adminNavigation;
