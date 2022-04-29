@@ -1,0 +1,12 @@
+.floatingButton {
+    position: fixed !important;
+    bottom: 5%;
+    right: 3%;
+}
+
+label{
+    color: #000;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 500;
+}

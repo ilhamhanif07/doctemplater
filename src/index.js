@@ -10,6 +10,7 @@ import {
 	GlobalCss,
 } from "@mostrans/web-components/providers";
 import { HashRouter } from "react-router-dom";
+import './components/GeneralComponent/GeneralCSS.css'
 
 const link = "http://localhost:5013/graphql"
 ReactDOM.render(
