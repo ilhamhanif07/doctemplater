@@ -76,6 +76,8 @@ export const GetRequestTypeByDocumentTypeId = async (
           documentType {
             id
             document_type_name
+            document_subtype_name
+            active
             create_date
           }
         }
@@ -592,4 +594,198 @@ export const GetCity = async (lat, lang) => {
  });
 
  return city
+}
+
+export const getMappingAttachment = async (client) => {
+	const strSQL = gql `
+	query GetMappingAttachment {
+		getMappingAttachment {
+		  response {
+			status
+			errMsg
+			id_affected
+		  }
+		  data {
+			id
+			description
+			active
+			create_date
+			create_by
+			update_date
+			update_by
+			documentSubType {
+			  id
+			  document_subtype_name
+			}
+			attachmentType {
+			  id
+			  attachment_type_name
+			}
+		  }
+		}
+	  }
+	`
+
+	var { data } = await client.query({
+		query: strSQL,
+		variables: {}
+	})
+
+	return data.getMappingAttachment;
+}
+
+export const getAttachmentType = async (client) => {
+	const strSQL = gql `
+	query GetAttachmentType {
+		getAttachmentType {
+		  response {
+			status
+			errMsg
+			id_affected
+		  }
+		  data {
+			id
+			attachment_type_name
+			create_date
+		  }
+		}
+	  }
+	`
+
+	var { data } = await client.query({
+		query: strSQL,
+		variables: {}
+	})
+
+	return data.getAttachmentType;
+}
+
+export const getDocumentSubTypeByDocumentTypeId = async (client, param) => {
+	const strSQL = gql `
+	query GetDocumentSubTypeByDocumentTypeId($documentTypeId: String) {
+		getDocumentSubTypeByDocumentTypeId(document_type_id: $documentTypeId) {
+		  response {
+			status
+			errMsg
+			id_affected
+		  }
+		  data {
+			id
+			document_subtype_name
+			active
+			create_date
+			create_by
+			update_date
+			update_by
+			documentType {
+			  id
+			  document_type_name
+			}
+		  }
+		}
+	  }
+	`
+
+	var { data } = await client.query({
+		query: strSQL,
+		variables: {
+			documentTypeId: param,
+		}
+	})
+
+	return data.getDocumentSubTypeByDocumentTypeId;
+}
+
+export const getMappingApproval = async (client) => {
+	const strSQL = gql `
+	query GetMappingApproval {
+		getMappingApproval {
+		  response {
+			status
+			errMsg
+			id_affected
+		  }
+		  data {
+			id
+			level
+			create_date
+			create_by
+			update_date
+			update_by
+			sbu {
+			  id
+			  company_name
+			  company_alias
+			}
+			documentType {
+			  id
+			  document_type_name
+			}
+			jabatan {
+			  id
+			  position_name
+			}
+		  }
+		}
+	  }
+	`
+
+	var { data } = await client.query({
+		query: strSQL,
+		variables: {}
+	})
+
+	return data.getMappingApproval;
+}
+
+export const getUserCompany = async ( client ) => {
+	const strSQL = gql 
+	`
+	query GetUserCompany {
+		getUserCompany {
+		  response {
+			status
+			errMsg
+			id_affected
+		  }
+		  data {
+			id
+			company_name
+			company_alias
+		  }
+		}
+	  }
+	`
+
+	var { data } = await client.query({
+		query: strSQL,
+		variables: {}
+	})
+
+	return data.getUserCompany;
+}
+
+export const getJabatan = async( client ) => {
+	const strSQL = gql `
+	query GetJabatan {
+		getJabatan {
+		  response {
+			status
+			errMsg
+			id_affected
+		  }
+		  data {
+			id
+			position_name
+		  }
+		}
+	  }
+	`
+
+	var { data } = await client.query({
+		query: strSQL,
+		variables: {}
+	})
+
+	return data.getJabatan;
 }
