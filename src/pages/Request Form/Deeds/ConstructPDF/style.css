@@ -1,0 +1,14 @@
+.cusTh,
+.cusTd {
+  padding: 5px;
+}
+
+.cusTable {
+  border: 1px solid;
+  width: 120px;
+  text-align: center;
+}
+
+.cusBorder {
+  border: 1px solid;
+}

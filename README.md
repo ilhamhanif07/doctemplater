@@ -4,3 +4,10 @@
 #### shared function atau var yang dipakai di banyak tempat
 
 ### global state untuk taruh atom recoil yang global
+
+    <!-- "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    }, -->

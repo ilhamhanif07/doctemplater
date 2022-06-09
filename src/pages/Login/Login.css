@@ -1,0 +1,14 @@
+.background_peta{
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.btn_primary_mostrans{
+    background-color: #008c45;
+    border-color: #008c45;
+    color: white;
+}
+
+.btn_primary_mostrans:focus{
+    color: white;
+}
