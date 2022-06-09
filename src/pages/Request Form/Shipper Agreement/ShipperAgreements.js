@@ -1,14 +1,14 @@
 import React from 'react';
 import { Paper } from '@mui/material';
 
-function Letter() {
+function ShipperAgreements() {
     return (
         <React.Fragment>
             <Paper sx={{p:2}}>
-                <h1>Letter Page</h1>
+                <h1>Agreement Page</h1>
             </Paper>
         </React.Fragment>
     )
 }
 
-export default Letter;
+export default ShipperAgreements;

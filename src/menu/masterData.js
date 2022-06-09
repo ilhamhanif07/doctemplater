@@ -12,12 +12,12 @@ const masterData = [
                 icon: <Icon className="material-icon-outlined">article</Icon>,
                 link: '/masterData/subTypeDocument',
             },
-            {
-                title: 'MasterData',
-                subTitle: 'Attachments',
-                icon: <Icon className="material-icon-outlined">attachment</Icon>,
-                link: '/masterData/attachments',
-            },
+            // {
+            //     title: 'MasterData',
+            //     subTitle: 'Attachments',
+            //     icon: <Icon className="material-icon-outlined">attachment</Icon>,
+            //     link: '/masterData/attachments',
+            // },
             {
                 title: 'MasterData',
                 subTitle: 'Mapping Approval',

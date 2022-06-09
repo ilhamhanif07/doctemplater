@@ -1,40 +1,40 @@
 import BlankLayout from "../../components/layout/BlankLayout";
-import Agreement from "../../pages/Request Form/Agreement/Agreement";
 import Deeds from "../../pages/Request Form/Deeds/Deeds";
-import DisputeSettlement from "../../pages/Request Form/Dispute Settlement/DisputeSettlement";
-import IntellectualProperty from "../../pages/Request Form/Intellectual Property/IntellectualProperty";
-import Letter from "../../pages/Request Form/Letter/Letter";
-import License from "../../pages/Request Form/License/License";
+import ShipperAgreements from "../../pages/Request Form/Shipper Agreement/ShipperAgreements";
 
 const request = [
     {
         path: '/request',
         element: <BlankLayout />,
         children: [
+            // {
+            //     path: '/request/agreement',
+            //     element: <Agreement />,
+            // },
+            // {
+            //     path: '/request/license',
+            //     element: <License />,
+            // },
+            // {
+            //     path: '/request/intellectualProperty',
+            //     element: <IntellectualProperty />,
+            // },
+            // {
+            //     path: '/request/letter',
+            //     element: <Letter />,
+            // },
             {
-                path: '/request/agreement',
-                element: <Agreement />,
-            },
-            {
-                path: '/request/license',
-                element: <License />,
-            },
-            {
-                path: '/request/intellectualProperty',
-                element: <IntellectualProperty />,
-            },
-            {
-                path: '/request/letter',
-                element: <Letter />,
-            },
-            {
-                path: '/request/deeds',
+                path: '/request/transporterAgreements',
                 element: <Deeds />,
             },
             {
-                path: '/request/disputeSettlement',
-                element: <DisputeSettlement />,
-            },
+                path: '/request/shipperAgreements',
+                element: <ShipperAgreements />
+            }
+            // {
+            //     path: '/request/disputeSettlement',
+            //     element: <DisputeSettlement />,
+            // },
         ]
     }
 ]
