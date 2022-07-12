@@ -1,9 +1,22 @@
 import React from "react";
 import { useRecoilState } from "recoil";
-import { dataManagementFee } from "../BaseRecoil";
+import {
+  dataManagementFee,
+  dataSignatureDate,
+  dataWaktuBerlaku,
+} from "../BaseRecoil";
+import moment from "moment";
 
 function BodyLegal4() {
-  const [localDataManagementFee, setDataManagementFee] = useRecoilState(dataManagementFee);
+  const [localDataManagementFee, setDataManagementFee] =
+    useRecoilState(dataManagementFee);
+  const [startDate, setStartDate] = useRecoilState(dataSignatureDate);
+  const [localDataWaktuBerlaku, setDataWaktuBerlaku] =
+    useRecoilState(dataWaktuBerlaku);
+
+  let endDate = moment(startDate.format("YYYY-MM-DD"), "YYYY-MM-DD");
+  endDate = endDate.add(localDataWaktuBerlaku, "years").format("YYYY-MM-DD");
+
   return (
     <div
       className="mt-1"
@@ -28,9 +41,10 @@ function BodyLegal4() {
           }}
         >
           <li>
-            Perjanjian ini berlaku selama [1] (satu) tahun terhitung sejak
-            tanggal [TANGGAL BULAN TAHUN] sampai dengan tanggal [TANGGAL BULAN
-            TAHUN] (selanjutnya disebut{" "}
+            Perjanjian ini berlaku selama {localDataWaktuBerlaku} tahun
+            terhitung sejak tanggal {startDate.format("YYYY-MM-DD")} sampai
+            dengan tanggal
+            {endDate} (selanjutnya disebut{" "}
             <span style={{ fontWeight: "800" }}>“Jangka Waktu”</span>).
           </li>
           <li>

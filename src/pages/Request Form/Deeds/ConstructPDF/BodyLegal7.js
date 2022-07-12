@@ -1,6 +1,10 @@
 import React from "react";
+import { useRecoilState } from "recoil";
+import { dataKeluhanHari } from "../BaseRecoil";
 
 function BodyLegal7() {
+  const [localDataKeluhanHari, setDataKeluhanHari] =
+    useRecoilState(dataKeluhanHari);
   return (
     <div
       className="mt-1"
@@ -24,7 +28,7 @@ function BodyLegal7() {
             keluhan yang diterima dari receiver dan memberikan tanggapan
             terhadap keluhan ke Pihak Pertama dalam bentuk tertulis berdasarkan
             hasil investigasi dan tindakan perbaikan/pencegahan yang ditentukan
-            berdasarkan kurun waktu yang [mohon lgsg ditentukan kurun waktunya]
+            berdasarkan kurun waktu yang {localDataKeluhanHari}
             dan prosedur yang disetujui. Pihak Kedua wajib menyediakan
             dokumen-dokumen ataupun informasi lainnya yang diperlukan selama
             proses investigasi yang dibutuhkan oleh Pihak Pertama.

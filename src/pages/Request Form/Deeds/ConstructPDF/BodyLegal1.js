@@ -1,16 +1,42 @@
 import React, { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { dataNamaDirektur, dataNamaJabatan, dataNamaPerusahaan, dataNamaNotaris, dataWilayahNotaris, dataNomorAkta } from "../BaseRecoil";
+import {
+  dataNamaDirektur,
+  dataNamaJabatan,
+  dataNamaPerusahaan,
+  dataNamaNotaris,
+  dataWilayahNotaris,
+  dataNomorAkta,
+  dataDocumentNumber,
+  dataTanggalAkta,
+  dataModalTransporter,
+} from "../BaseRecoil";
 import { GetCity } from "../../../../GQL/query";
 
-function BodyLegal1() {
-  const [localDataNamaDirektur, setDataNamaDirektur] = useRecoilState(dataNamaDirektur);
-  const [localDataNamaJabatan, setDataNamaJabatan] = useRecoilState(dataNamaJabatan);
-  const [localDataNamaPerusahaan, setDataNamaPerusahaan] = useRecoilState(dataNamaPerusahaan);
-  const [localDataNamaNotaris, setDataNamaNotaris] = useRecoilState(dataNamaNotaris);
-  const [localDataWilayahNotaris, setDataWilayahNotaris] = useRecoilState(dataWilayahNotaris);
+function BodyLegal1(props) {
+  // mode 1 = create
+  // mode 2 = edit
+  // mode 3 = detail
+  const { mode } = props;
+  const [localDataNamaDirektur, setDataNamaDirektur] =
+    useRecoilState(dataNamaDirektur);
+  const [localDataNamaJabatan, setDataNamaJabatan] =
+    useRecoilState(dataNamaJabatan);
+  const [localDataNamaPerusahaan, setDataNamaPerusahaan] =
+    useRecoilState(dataNamaPerusahaan);
+  const [localDataNamaNotaris, setDataNamaNotaris] =
+    useRecoilState(dataNamaNotaris);
+  const [localDataWilayahNotaris, setDataWilayahNotaris] =
+    useRecoilState(dataWilayahNotaris);
   const [localDataNomorAkta, setDataNomorAkta] = useRecoilState(dataNomorAkta);
-  const [dataKota, setDataKota] = useState("")
+  const [localDataDocumentNumber, setDataDocumentNumber] =
+    useRecoilState(dataDocumentNumber);
+  const [localDataTanggalAkta, setDataTanggalAkta] =
+    useRecoilState(dataTanggalAkta);
+  const [dataKota, setDataKota] = useState("");
+  const [localDataModal, setDataModal] = useRecoilState(dataModalTransporter);
+
+  console.log(localDataModal, "dataModal");
 
   const months = [
     "January",
@@ -27,10 +53,10 @@ function BodyLegal1() {
     "December",
   ];
 
-  useEffect(async ()=>{
-    let a = await GetCity("-6.095240299999999","106.6889271")
-    setDataKota(a)
-  })
+  useEffect(async () => {
+    let a = await GetCity("-6.095240299999999", "106.6889271");
+    setDataKota(a);
+  });
 
   const m = new Date();
   let month = months[m.getMonth()];
@@ -75,9 +101,15 @@ function BodyLegal1() {
         <br />
         dan
         <br />
-        {localDataNamaPerusahaan?.label}
+        {mode === 1
+          ? localDataNamaPerusahaan?.label
+          : localDataModal?.transporter?.nama_transporter}
         <br />
-        Nomor : NOMOR PERUSAHAAN
+        Nomor :{" "}
+        {mode === 1
+          ? localDataDocumentNumber?.label
+          : localDataModal?.document_number}
+        <br />
         <br />
       </p>
 
@@ -115,14 +147,20 @@ function BodyLegal1() {
           </li>
           <br />
           <li>
-            <span style={{ fontWeight: "800" }}>{localDataNamaPerusahaan?.label}</span>, suatu
-            Persekutuan Komanditer yang didirikan berdasarkan hukum negara
-            Republik Indonesia yang berkedudukan di {dataKota} dan beralamat di{" "}
-            {localDataNamaPerusahaan?.alamat} dalam hal ini diwakili oleh{" "}
+            <span style={{ fontWeight: "800" }}>
+              {localDataNamaPerusahaan?.label}
+            </span>
+            , suatu Persekutuan Komanditer yang didirikan berdasarkan hukum
+            negara Republik Indonesia yang berkedudukan di {dataKota} dan
+            beralamat di {localDataNamaPerusahaan?.alamat} dalam hal ini
+            diwakili oleh{" "}
             <span style={{ fontWeight: "800" }}>{localDataNamaDirektur}</span>,
-            bertindak dalam kedudukannya sebagai {localDataNamaJabatan} berdasarkan Akta
-            Nomor {localDataNomorAkta} tanggal [TANGGAL AKTA] yang dibuat di hadapan {localDataNamaNotaris}, Notaris di {localDataWilayahNotaris}, dari dan oleh
-            karenanya sah bertindak untuk dan atas nama {localDataNamaPerusahaan?.label}
+            bertindak dalam kedudukannya sebagai {localDataNamaJabatan}{" "}
+            berdasarkan Akta Nomor {localDataNomorAkta} tanggal{" "}
+            {localDataTanggalAkta.format("YYYY-MM-DD")} yang dibuat di hadapan{" "}
+            {localDataNamaNotaris}, Notaris di {localDataWilayahNotaris}, dari
+            dan oleh karenanya sah bertindak untuk dan atas nama{" "}
+            {localDataNamaPerusahaan?.label}
             (selanjutnya disebut{" "}
             <span style={{ fontWeight: "800" }}>“Pihak Kedua/Transporter”</span>
             ).

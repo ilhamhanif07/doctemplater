@@ -1,84 +1,129 @@
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 
 export const insertDocumentSubType = async (client, param) => {
-	const strSQL = gql`
+  const strSQL = gql`
     mutation InsertDocumentSubType($input: InsertDocumentSubTypeInput) {
-        insertDocumentSubType(input: $input) {
-          status
-          errMsg
-          id_affected
-        }
+      insertDocumentSubType(input: $input) {
+        status
+        errMsg
+        id_affected
       }
-    `
+    }
+  `;
 
-	var { data } = await client.mutate({
-		mutation: strSQL,
-		variables: {
-			input: param,
-		}
-	})
+  var { data } = await client.mutate({
+    mutation: strSQL,
+    variables: {
+      input: param,
+    },
+  });
 
-	return data.insertDocumentSubType;
-}
+  return data.insertDocumentSubType;
+};
 
 export const updateDocumentSubType = async (client, param) => {
-	const strSQL = gql`
+  const strSQL = gql`
     mutation UpdateDocumentSubType($input: UpdateDocumentSubTypeInput) {
-        updateDocumentSubType(input: $input) {
-          status
-          errMsg
-          id_affected
-        }
-      }`
+      updateDocumentSubType(input: $input) {
+        status
+        errMsg
+        id_affected
+      }
+    }
+  `;
 
-	var { data } = await client.mutate({
-		mutation: strSQL,
-		variables: {
-			input: param,
-		}
-	})
+  var { data } = await client.mutate({
+    mutation: strSQL,
+    variables: {
+      input: param,
+    },
+  });
 
-	return data.updateDocumentSubType;
-}
+  return data.updateDocumentSubType;
+};
 
 export const insertMappingAttachment = async (client, param) => {
-	const strSQL = gql`
+  const strSQL = gql`
     mutation InsertMappingAttachment($input: InsertMappingAttachmentInput) {
-        insertMappingAttachment(input: $input) {
-          status
-          errMsg
-          id_affected
-        }
+      insertMappingAttachment(input: $input) {
+        status
+        errMsg
+        id_affected
       }
-    `
+    }
+  `;
 
-	var { data } = await client.mutate({
-		mutation: strSQL,
-		variables: {
-			input: param,
-		}
-	})
+  var { data } = await client.mutate({
+    mutation: strSQL,
+    variables: {
+      input: param,
+    },
+  });
 
-	return data.insertMappingAttachment;
-}
+  return data.insertMappingAttachment;
+};
 
 export const updateMappingAttachment = async (client, param) => {
-	const strSQL = gql`
-  mutation UpdateMappingAttachment($input: UpdateMappingAttachmentInput) {
-    updateMappingAttachment(input: $input) {
-      status
-      errMsg
-      id_affected
+  const strSQL = gql`
+    mutation UpdateMappingAttachment($input: UpdateMappingAttachmentInput) {
+      updateMappingAttachment(input: $input) {
+        status
+        errMsg
+        id_affected
+      }
     }
-  }
-  `
+  `;
 
-	var { data } = await client.mutate({
-		mutation: strSQL,
-		variables: {
-			input: param,
-		}
-	})
+  var { data } = await client.mutate({
+    mutation: strSQL,
+    variables: {
+      input: param,
+    },
+  });
 
-	return data.updateMappingAttachment;
-}
+  return data.updateMappingAttachment;
+};
+
+export const insertTransporterAgreement = async (client, param) => {
+  const strSQL = gql`
+    mutation InsertTransporterAgreement(
+      $input: InsertTransporterAgreementInput
+    ) {
+      insertTransporterAgreement(input: $input) {
+        status
+        errMsg
+        id_affected
+      }
+    }
+  `;
+
+  var { data } = await client.mutate({
+    mutation: strSQL,
+    variables: {
+      input: param,
+    },
+  });
+
+  return data.insertTransporterAgreement;
+};
+
+export const insertShipperAgreement = async (client, param) => {
+  const strSQL = gql`
+    mutation InsertShipperAgreement($input: InsertShipperAgreementInput) {
+      insertShipperAgreement(input: $input) {
+        status
+        errMsg
+        id_affected
+      }
+    }
+  `;
+
+  var { data } = await client.mutate({
+    mutation: strSQL,
+    variables: {
+      input: param,
+    },
+  });
+
+  return data.insertShipperAgreement;
+};

@@ -25,8 +25,7 @@ export default function TabAgreement({ handleChangeTab, counts }) {
           setCurTab(1);
         }}
       >
-        Draft
-        <GreenTabItemBadge>{counts.draft}</GreenTabItemBadge>
+        Draft <GreenTabItemBadge>{counts?.draft}</GreenTabItemBadge>
       </TabItem>
       <TabItem
         current={curTab === 2}
@@ -35,7 +34,7 @@ export default function TabAgreement({ handleChangeTab, counts }) {
         }}
       >
         Waiting For Approval
-        <GreenTabItemBadge>{counts.wfApp}</GreenTabItemBadge>
+        <GreenTabItemBadge>{counts?.wfApp}</GreenTabItemBadge>
       </TabItem>
       <TabItem
         current={curTab === 3}
@@ -44,7 +43,7 @@ export default function TabAgreement({ handleChangeTab, counts }) {
         }}
       >
         Waiting for Acknowledgement
-        <GreenTabItemBadge>{counts.wfAck}</GreenTabItemBadge>
+        <GreenTabItemBadge>{counts?.wfAck}</GreenTabItemBadge>
       </TabItem>
       <TabItem
         current={curTab === 4}
@@ -53,7 +52,7 @@ export default function TabAgreement({ handleChangeTab, counts }) {
         }}
       >
         Waiting for Review
-        <GreenTabItemBadge>{counts.wfView}</GreenTabItemBadge>
+        <GreenTabItemBadge>{counts?.wfView}</GreenTabItemBadge>
       </TabItem>
       <TabItem
         current={curTab === 5}
@@ -62,7 +61,7 @@ export default function TabAgreement({ handleChangeTab, counts }) {
         }}
       >
         Waiting for Confirmation
-        <GreenTabItemBadge>{counts.wfCon}</GreenTabItemBadge>
+        <GreenTabItemBadge>{counts?.wfCon}</GreenTabItemBadge>
       </TabItem>
       <TabItem
         current={curTab === 6}
@@ -71,7 +70,7 @@ export default function TabAgreement({ handleChangeTab, counts }) {
         }}
       >
         Waiting for Finalization
-        <GreenTabItemBadge>{counts.wfFin}</GreenTabItemBadge>
+        <GreenTabItemBadge>{counts?.wfFin}</GreenTabItemBadge>
       </TabItem>
       <TabItem
         current={curTab === 7}
@@ -80,7 +79,7 @@ export default function TabAgreement({ handleChangeTab, counts }) {
         }}
       >
         Done
-        <GreenTabItemBadge>{counts.done}</GreenTabItemBadge>
+        <GreenTabItemBadge>{counts?.done}</GreenTabItemBadge>
       </TabItem>
       <TabItem
         current={curTab === 8}
@@ -89,7 +88,7 @@ export default function TabAgreement({ handleChangeTab, counts }) {
         }}
       >
         Waiting for Revision
-        <GreenTabItemBadge>{counts.wfRev}</GreenTabItemBadge>
+        <GreenTabItemBadge>{counts?.wfRev}</GreenTabItemBadge>
       </TabItem>
       <TabItem
         current={curTab === 9}
@@ -98,7 +97,6 @@ export default function TabAgreement({ handleChangeTab, counts }) {
         }}
       >
         Rejected
-        <GreenTabItemBadge>{counts.rejected}</GreenTabItemBadge>
       </TabItem>
     </Tabs>
   );
