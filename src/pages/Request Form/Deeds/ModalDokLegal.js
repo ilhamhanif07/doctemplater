@@ -1,13 +1,8 @@
-import React, { useRef } from "react";
-import {
-  Fab,
-  Dialog,
-  DialogContent,
-  Tooltip,
-  IconButton,
-  DialogTitle,
-} from "@mui/material";
+import React, { useRef, useState, useEffect } from "react";
+import { Fab, Dialog, DialogContent, Tooltip, IconButton, DialogTitle } from "@mui/material";
+import Button from "@mostrans/web-components/components/base/Button";
 import Close from "@mui/icons-material/Close";
+import EditIcon from "@mui/icons-material/Edit";
 import BodyLegal1 from "./ConstructPDF/BodyLegal1";
 import BodyLegal2 from "./ConstructPDF/BodyLegal2";
 import BodyLegal3 from "./ConstructPDF/BodyLegal3";
@@ -28,6 +23,13 @@ import BodyLegal17 from "./ConstructPDF/BodyLegal17";
 import FooterDokLegal from "./ConstructPDF/FooterDokLegal";
 import ReactToPrint from "react-to-print";
 import styled from "@emotion/styled";
+import EditorDoc from "./EditorDoc";
+import GeneratePdf from "./GeneratePdf";
+import { useRecoilValue } from "recoil";
+import { docfile } from "./BaseRecoil";
+import { saveAs } from "file-saver";
+import doc from "./template.docx";
+import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 
 export default function ModalDokLegal({ isOpen, onRequestClose }) {
   const PAPER_WIDTH = 800;
@@ -67,7 +69,158 @@ export default function ModalDokLegal({ isOpen, onRequestClose }) {
       padding-bottom: 0;
     }
   `;
+
+  const PreviewDoc = () => (
+    <>
+      <PrintPage>
+        <div className="d-flex flex-column" style={{ height: "100vh" }}>
+          <React.Fragment>
+            <BodyLegal1 />
+            <FooterDokLegal pageNumber={1} />
+          </React.Fragment>
+        </div>
+      </PrintPage>
+      <PrintPage>
+        <div className="d-flex flex-column" style={{ height: "100vh" }}>
+          <React.Fragment>
+            <BodyLegal2 />
+            <FooterDokLegal pageNumber={2} />
+          </React.Fragment>
+        </div>
+      </PrintPage>
+      <PrintPage>
+        <div className="d-flex flex-column" style={{ height: "100vh" }}>
+          <React.Fragment>
+            <BodyLegal3 />
+            <FooterDokLegal pageNumber={3} />
+          </React.Fragment>
+        </div>
+      </PrintPage>
+      <PrintPage>
+        <div className="d-flex flex-column" style={{ height: "100vh" }}>
+          <React.Fragment>
+            <BodyLegal4 />
+            <FooterDokLegal pageNumber={4} />
+          </React.Fragment>
+        </div>
+      </PrintPage>
+      <PrintPage>
+        <div className="d-flex flex-column" style={{ height: "100vh" }}>
+          <React.Fragment>
+            <BodyLegal5 />
+            <FooterDokLegal pageNumber={5} />
+          </React.Fragment>
+        </div>
+      </PrintPage>
+      <PrintPage>
+        <div className="d-flex flex-column" style={{ height: "100vh" }}>
+          <React.Fragment>
+            <BodyLegal6 />
+            <FooterDokLegal pageNumber={6} />
+          </React.Fragment>
+        </div>
+      </PrintPage>
+      <PrintPage>
+        <div className="d-flex flex-column" style={{ height: "100vh" }}>
+          <React.Fragment>
+            <BodyLegal7 />
+            <FooterDokLegal pageNumber={7} />
+          </React.Fragment>
+        </div>
+      </PrintPage>
+      <PrintPage>
+        <div className="d-flex flex-column" style={{ height: "100vh" }}>
+          <React.Fragment>
+            <BodyLegal8 />
+            <FooterDokLegal pageNumber={8} />
+          </React.Fragment>
+        </div>
+      </PrintPage>
+      <PrintPage>
+        <div className="d-flex flex-column" style={{ height: "100vh" }}>
+          <React.Fragment>
+            <BodyLegal9 />
+            <FooterDokLegal pageNumber={9} />
+          </React.Fragment>
+        </div>
+      </PrintPage>
+      <PrintPage>
+        <div className="d-flex flex-column" style={{ height: "100vh" }}>
+          <React.Fragment>
+            <BodyLegal10 />
+            <FooterDokLegal pageNumber={10} />
+          </React.Fragment>
+        </div>
+      </PrintPage>
+      <PrintPage>
+        <div className="d-flex flex-column" style={{ height: "100vh" }}>
+          <React.Fragment>
+            <BodyLegal11 />
+            <FooterDokLegal pageNumber={11} />
+          </React.Fragment>
+        </div>
+      </PrintPage>
+      <PrintPage>
+        <div className="d-flex flex-column" style={{ height: "100vh" }}>
+          <React.Fragment>
+            <BodyLegal12 />
+            <FooterDokLegal pageNumber={12} />
+          </React.Fragment>
+        </div>
+      </PrintPage>
+      <PrintPage>
+        <div className="d-flex flex-column" style={{ height: "100vh" }}>
+          <React.Fragment>
+            <BodyLegal13 />
+            <FooterDokLegal pageNumber={13} />
+          </React.Fragment>
+        </div>
+      </PrintPage>
+      <PrintPage>
+        <div className="d-flex flex-column" style={{ height: "100vh" }}>
+          <React.Fragment>
+            <BodyLegal14 />
+            <FooterDokLegal pageNumber={14} />
+          </React.Fragment>
+        </div>
+      </PrintPage>
+      <PrintPage>
+        <div className="d-flex flex-column" style={{ height: "100vh" }}>
+          <React.Fragment>
+            <BodyLegal15 />
+            <FooterDokLegal pageNumber={""} />
+          </React.Fragment>
+        </div>
+      </PrintPage>
+      <PrintPage>
+        <div className="d-flex flex-column" style={{ height: "100vh" }}>
+          <React.Fragment>
+            <BodyLegal16 />
+            <FooterDokLegal pageNumber={""} />
+          </React.Fragment>
+        </div>
+      </PrintPage>
+      <PrintPage>
+        <div className="d-flex flex-column" style={{ height: "100vh" }}>
+          <React.Fragment>
+            <BodyLegal17 />
+            <FooterDokLegal pageNumber={""} />
+          </React.Fragment>
+        </div>
+      </PrintPage>
+    </>
+  );
+
   const printRef = useRef(null);
+  const [editorDocOpen, setEditorDocOpen] = useState(false);
+  const docsfile = useRecoilValue(docfile);
+
+  var file = new File([docsfile], "file_name.docx", { lastModified: 1534584790000 });
+  console.log(file);
+
+  const docs = [
+    { uri: require("./template.docx") }, // Local File
+  ];
 
   return (
     <div>
@@ -76,8 +229,7 @@ export default function ModalDokLegal({ isOpen, onRequestClose }) {
         fullWidth
         open={true}
         onClose={onRequestClose}
-        sx={{ display: isOpen ? "block" : "none" }}
-      >
+        sx={{ display: isOpen ? "block" : "none" }}>
         <DialogTitle>
           <div className="d-flex justify-content-between align-items-center">
             <h3 className="h3-custom m-0">Preview PDF</h3>
@@ -99,8 +251,7 @@ export default function ModalDokLegal({ isOpen, onRequestClose }) {
                 marginTop: "-45px",
                 marginBottom: "5px",
                 marginLeft: "669px",
-              }}
-            >
+              }}>
               Download File
             </button>
           )}
@@ -110,146 +261,29 @@ export default function ModalDokLegal({ isOpen, onRequestClose }) {
         <DialogContent
           style={{
             padding: "0",
-          }}
-        >
+          }}>
           <PrintWrapper ref={printRef}>
-            <PrintPage>
-              <div className="d-flex flex-column" style={{ height: "100vh" }}>
-                <React.Fragment>
-                  <BodyLegal1 />
-                  <FooterDokLegal pageNumber={1} />
-                </React.Fragment>
-              </div>
-            </PrintPage>
-            <PrintPage>
-              <div className="d-flex flex-column" style={{ height: "100vh" }}>
-                <React.Fragment>
-                  <BodyLegal2 />
-                  <FooterDokLegal pageNumber={2} />
-                </React.Fragment>
-              </div>
-            </PrintPage>
-            <PrintPage>
-              <div className="d-flex flex-column" style={{ height: "100vh" }}>
-                <React.Fragment>
-                  <BodyLegal3 />
-                  <FooterDokLegal pageNumber={3} />
-                </React.Fragment>
-              </div>
-            </PrintPage>
-            <PrintPage>
-              <div className="d-flex flex-column" style={{ height: "100vh" }}>
-                <React.Fragment>
-                  <BodyLegal4 />
-                  <FooterDokLegal pageNumber={4} />
-                </React.Fragment>
-              </div>
-            </PrintPage>
-            <PrintPage>
-              <div className="d-flex flex-column" style={{ height: "100vh" }}>
-                <React.Fragment>
-                  <BodyLegal5 />
-                  <FooterDokLegal pageNumber={5} />
-                </React.Fragment>
-              </div>
-            </PrintPage>
-            <PrintPage>
-              <div className="d-flex flex-column" style={{ height: "100vh" }}>
-                <React.Fragment>
-                  <BodyLegal6 />
-                  <FooterDokLegal pageNumber={6} />
-                </React.Fragment>
-              </div>
-            </PrintPage>
-            <PrintPage>
-              <div className="d-flex flex-column" style={{ height: "100vh" }}>
-                <React.Fragment>
-                  <BodyLegal7 />
-                  <FooterDokLegal pageNumber={7} />
-                </React.Fragment>
-              </div>
-            </PrintPage>
-            <PrintPage>
-              <div className="d-flex flex-column" style={{ height: "100vh" }}>
-                <React.Fragment>
-                  <BodyLegal8 />
-                  <FooterDokLegal pageNumber={8} />
-                </React.Fragment>
-              </div>
-            </PrintPage>
-            <PrintPage>
-              <div className="d-flex flex-column" style={{ height: "100vh" }}>
-                <React.Fragment>
-                  <BodyLegal9 />
-                  <FooterDokLegal pageNumber={9} />
-                </React.Fragment>
-              </div>
-            </PrintPage>
-            <PrintPage>
-              <div className="d-flex flex-column" style={{ height: "100vh" }}>
-                <React.Fragment>
-                  <BodyLegal10 />
-                  <FooterDokLegal pageNumber={10} />
-                </React.Fragment>
-              </div>
-            </PrintPage>
-            <PrintPage>
-              <div className="d-flex flex-column" style={{ height: "100vh" }}>
-                <React.Fragment>
-                  <BodyLegal11 />
-                  <FooterDokLegal pageNumber={11} />
-                </React.Fragment>
-              </div>
-            </PrintPage>
-            <PrintPage>
-              <div className="d-flex flex-column" style={{ height: "100vh" }}>
-                <React.Fragment>
-                  <BodyLegal12 />
-                  <FooterDokLegal pageNumber={12} />
-                </React.Fragment>
-              </div>
-            </PrintPage>
-            <PrintPage>
-              <div className="d-flex flex-column" style={{ height: "100vh" }}>
-                <React.Fragment>
-                  <BodyLegal13 />
-                  <FooterDokLegal pageNumber={13} />
-                </React.Fragment>
-              </div>
-            </PrintPage>
-            <PrintPage>
-              <div className="d-flex flex-column" style={{ height: "100vh" }}>
-                <React.Fragment>
-                  <BodyLegal14 />
-                  <FooterDokLegal pageNumber={14} />
-                </React.Fragment>
-              </div>
-            </PrintPage>
-            <PrintPage>
-              <div className="d-flex flex-column" style={{ height: "100vh" }}>
-                <React.Fragment>
-                  <BodyLegal15 />
-                  <FooterDokLegal pageNumber={""} />
-                </React.Fragment>
-              </div>
-            </PrintPage>
-            <PrintPage>
-              <div className="d-flex flex-column" style={{ height: "100vh" }}>
-                <React.Fragment>
-                  <BodyLegal16 />
-                  <FooterDokLegal pageNumber={""} />
-                </React.Fragment>
-              </div>
-            </PrintPage>
-            <PrintPage>
-              <div className="d-flex flex-column" style={{ height: "100vh" }}>
-                <React.Fragment>
-                  <BodyLegal17 />
-                  <FooterDokLegal pageNumber={""} />
-                </React.Fragment>
-              </div>
-            </PrintPage>
+            {(() => {
+              if (editorDocOpen === true) {
+                return (
+                  <PrintPage>
+                    <GeneratePdf />
+                  </PrintPage>
+                );
+              } else {
+                return <DocViewer pluginRenderers={DocViewerRenderers} documents={docs} />;
+              }
+            })()}
           </PrintWrapper>
+
+          <div className="button-ballon" style={{ position: "fixed", bottom: "5%", right: "15%" }}>
+            <IconButton
+              size="large"
+              style={{ backgroundColor: "#0A8C4A" }}
+              onClick={() => setEditorDocOpen(!editorDocOpen)}>
+              <EditIcon style={{ fontSize: "1.5rem", color: "white" }} />
+            </IconButton>
+          </div>
         </DialogContent>
       </Dialog>
     </div>

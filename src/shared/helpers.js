@@ -1,6 +1,7 @@
 import html2canvas from "html2canvas";
 import Swal from "sweetalert2";
 import moment from "moment";
+import PizZipUtils from "pizzip/utils/index.js";
 // import _toLower from 'lodash/toLower';
 // import _startCase from 'lodash/startCase';
 
@@ -58,11 +59,7 @@ export const swalConfirm = (
     position: "top",
     customClass: { container: "sweetalert-z-index" },
   }).then((res) =>
-    res.isConfirmed
-      ? successCB?.()
-      : res.isDismissed
-      ? deniedCB?.()
-      : canceledCB?.()
+    res.isConfirmed ? successCB?.() : res.isDismissed ? deniedCB?.() : canceledCB?.()
   );
 };
 
@@ -126,8 +123,7 @@ export const getMinutes = (minute = 0) => {
 
 export const getDate = () => moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
 
-export const utf8ToBase64 = (str) =>
-  Buffer.from(str, "utf-8").toString("base64");
+export const utf8ToBase64 = (str) => Buffer.from(str, "utf-8").toString("base64");
 
 export const arrayBufferToBlob = (buffer, type = "") => {
   let blob = new Blob([buffer], { type });
@@ -160,10 +156,7 @@ export const getStatusDokumen = (data) => {
       data.detail_data[0].status == null
     ) {
       return "Upload Baru_success";
-    } else if (
-      data.detail_data[0].rejected == true &&
-      data.detail_data[0].status == "A"
-    ) {
+    } else if (data.detail_data[0].rejected == true && data.detail_data[0].status == "A") {
       return "Rejected_danger";
     } else if (
       data.detail_data[0].rejected == false &&
@@ -177,4 +170,8 @@ export const getStatusDokumen = (data) => {
   } else {
     return "Belum Upload_danger";
   }
+};
+
+export const loadFile = (url, callback) => {
+  return PizZipUtils.getBinaryContent(url, callback);
 };

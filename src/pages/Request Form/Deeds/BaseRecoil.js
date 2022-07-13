@@ -90,3 +90,8 @@ export const dataModalTransporter = atom({
   key: "dataModalTransporter",
   default: {},
 });
+
+export const docfile = atom({
+  key: "docfile",
+  default: "",
+});
